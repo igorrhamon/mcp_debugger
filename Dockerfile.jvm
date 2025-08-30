@@ -21,4 +21,3 @@ ENV QUARKUS_LOG_CONSOLE_STDERR=true \
 COPY --from=build /build/target/quarkus-app ./quarkus-app
 USER app
 ENTRYPOINT ["java","-jar","/app/quarkus-app/quarkus-run.jar"]
-
