@@ -1,9 +1,9 @@
 {
   "mcpServers": {
     "dap": {
-      "command": "java",
-      "args": ["-jar", "${workspaceFolder}/target/quarkus-app/quarkus-run.jar"],
-      "transport": "stdio"
-    }
+			"command": "wsl",
+			"args": ["docker","run", "-i", "--rm", "quarkus-mcp-dap:latest"],
+			"transport": "stdio"
+		}
   }
 }

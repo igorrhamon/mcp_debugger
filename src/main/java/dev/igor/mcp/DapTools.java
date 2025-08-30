@@ -10,7 +10,7 @@ public class DapTools {
     @Inject
     DapClient dap;
 
-    @Tool(name = "dap.attach", description = "Attach to a Debug Adapter server")
+    @Tool(name = "dapAttach", description = "Attach to a Debug Adapter server")
     public String attach(
             @ToolArg(description = "Host") String host,
             @ToolArg(description = "Port") int port) throws Exception {
@@ -20,12 +20,12 @@ public class DapTools {
         return Json.write(init);
     }
 
-    @Tool(name = "dap.threads", description = "List threads")
+    @Tool(name = "dapThreads", description = "List threads")
     public String threads() throws Exception {
         return Json.write(dap.threads());
     }
 
-    @Tool(name = "dap.stackTrace", description = "Get stack trace")
+    @Tool(name = "dapStackTrace", description = "Get stack trace")
     public String stackTrace(
             @ToolArg(description = "Thread id") int threadId,
             @ToolArg(description = "Start frame (optional)") Integer startFrame,
@@ -33,17 +33,17 @@ public class DapTools {
         return Json.write(dap.stackTrace(threadId, startFrame, levels));
     }
 
-    @Tool(name = "dap.scopes", description = "Get scopes for a frame")
+    @Tool(name = "dapScopes", description = "Get scopes for a frame")
     public String scopes(@ToolArg(description = "Frame id") int frameId) throws Exception {
         return Json.write(dap.scopes(frameId));
     }
 
-    @Tool(name = "dap.variables", description = "Get variables for a scope")
+    @Tool(name = "dapVariables", description = "Get variables for a scope")
     public String variables(@ToolArg(description = "Variables reference") int variablesReference) throws Exception {
         return Json.write(dap.variables(variablesReference));
     }
 
-    @Tool(name = "dap.evaluate", description = "Evaluate an expression")
+    @Tool(name = "dapEvaluate", description = "Evaluate an expression")
     public String evaluate(
             @ToolArg(description = "Expression to evaluate") String expression,
             @ToolArg(description = "Frame id (optional)") Integer frameId,
@@ -51,7 +51,7 @@ public class DapTools {
         return Json.write(dap.evaluate(expression, frameId, context));
     }
 
-    @Tool(name = "dap.continue", description = "Continue execution")
+    @Tool(name = "dapContinue", description = "Continue execution")
     public String cont(@ToolArg(description = "Thread id") int threadId) throws Exception {
         return Json.write(dap.cont(threadId));
     }
