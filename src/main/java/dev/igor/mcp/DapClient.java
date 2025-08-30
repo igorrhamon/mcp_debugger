@@ -1,11 +1,13 @@
 package dev.igor.mcp;
 
+import jakarta.enterprise.context.ApplicationScoped;
 import java.io.*;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
+@ApplicationScoped
 public class DapClient {
     private Socket socket;
     private InputStream in;
