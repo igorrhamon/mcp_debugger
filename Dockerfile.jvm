@@ -1,0 +1,24 @@
+FROM maven:3.9-eclipse-temurin-21 AS build
+WORKDIR /build
+COPY pom.xml .
+RUN mvn -q -DskipTests dependency:go-offline
+COPY src ./src
+RUN mvn -q -DskipTests package
+
+FROM eclipse-temurin:21-jre-alpine
+WORKDIR /app
+RUN addgroup -S app && adduser -S app -G app
+RUN mkdir /app/logs && chown app:app /app/logs
+RUN touch /app/mcp-server.log && chown app:app /app/mcp-server.log
+
+
+ENV JAVA_TOOL_OPTIONS="-XX:MaxRAMPercentage=70 -XX:+UseContainerSupport -XX:+ExitOnOutOfMemoryError -Dfile.encoding=UTF-8"
+ENV QUARKUS_LOG_CONSOLE_STDERR=true \
+	QUARKUS_LOG_CONSOLE_LEVEL=ERROR \
+	QUARKUS_LOG_CATEGORY__IO_QUARKUS__LEVEL=ERROR \
+	QUARKUS_LOG_CATEGORY__DEV_IGOR_MCP__LEVEL=ERROR \
+	QUARKUS_LOG_CONSOLE_JSON=false
+COPY --from=build /build/target/quarkus-app ./quarkus-app
+USER app
+ENTRYPOINT ["java","-jar","/app/quarkus-app/quarkus-run.jar"]
+
