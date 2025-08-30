@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "dap": {
+      "command": "java",
+      "args": ["-jar", "${workspaceFolder}/target/quarkus-app/quarkus-run.jar"],
+      "transport": "stdio"
+    }
+  }
+}

@@ -1,0 +1,5 @@
+/app/src/main/java/dev/igor/mcp/DapClient.java
+/app/src/main/java/dev/igor/mcp/Json.java
+/app/src/main/java/dev/igor/mcp/McpServer.java
+/app/src/main/java/dev/igor/mcp/QuarkusMcpCommand.java
+/app/src/main/java/dev/igor/mcp/tools/Tools.java
